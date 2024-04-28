@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block title %}Корзина{% endblock %}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static 'css/cartttt.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="container" style="margin: 0px; display: flex;">
+    <div class="product-cards">
+        {% if cart|length == 0 %}
+            <p class="cart_empty_p">Корзина пуста</p>
+
+        {% else %}
+        {% for rec in cart %}
+        <div class="product-card">
+
+            <div class="checkbox_item">
+                <input type="checkbox" id="checkbox_item{{ rec.id }}"/>
+                <label for="checkbox_item{{ rec.id }}"></label>
+            </div>
+
+            <a style="text-decoration: none;" href="{% url 'shop:item_detail' rec.item.id %}">
+                <div class="product-image">
+                    <img src="{{ rec.item.images.all.first.image.url }}" alt="Без изображения">
+                </div>
+            </a>
+
+            <div class="product-details">
+                <a style="text-decoration: none; font-size: 20px; color: black;"
+                   href="{% url 'shop:item_detail' rec.item.id %}">
+                    {{ rec.item.title }}
+                </a>
+
+                <p>Продавец {{ name }}</p>
+
+                <div class="product-price">
+                    <span class="discount-price">{{ rec.item.price }} ₽</span>
+                </div>
+
+                <div class="counter">
+                    <button class="counter-button decrement">-</button>
+                    <span class="counter-value">{{ rec.number }}</span>
+                    <button class="counter-button increment">+</button>
+                    <a href="{% url 'shop:cart_remove' rec.item.id %}"><input class="remove_btn" type="button"
+                                                                              value="🗑"></a>
+                </div>
+
+            </div>
+        </div>
+        {% endfor %}
+        {% endif %}
+    </div>
+
+
+    <div class="order_info_box">
+        <h4>Сумма заказа:</h4>
+        <h5 class="order_price">{{ cart_price }} ₽</h5>
+        <input class="order_btn" value="Перейти к оформлению" type="button">
+    </div>
+
+</div>
+
+<script src="{% static 'js/counterrr.js' %}"></script>
+{% endblock %}

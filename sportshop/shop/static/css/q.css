@@ -1,0 +1,175 @@
+body {
+    font-weight: bold;
+    background-color: rgb(252, 252, 252);
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 95%;
+    margin: 20px auto;
+    padding: 10px;
+}
+
+.header {
+    text-align: left;
+}
+
+.info {
+    margin-top: -5px;
+    align-items: left;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #ccc;
+}
+
+.info a {
+    font-size: 14px;
+    color: #666;
+    margin-right: 10px;
+    color: #007bff;
+    text-decoration: none;
+}
+
+.info a:hover {
+    text-decoration: underline;
+}
+
+.slider {
+    position: relative;
+    width: 500px;
+    height: 500px;
+    margin: 20 px 0;
+    overflow: hidden;
+    border-radius: 10px;
+}
+
+.slides {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.slide {
+    flex: 0 0 auto;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    border-radius: 10px;
+    position: relative;
+}
+
+button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 40px;
+    height: 40px;
+    background-color: rgba(255, 255, 255, 0.5);
+    border: none;
+    cursor: pointer;
+    font-size: 20px;
+    z-index: 2;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.slider:hover button {
+    opacity: 1;
+}
+
+.prev {
+    left: 0;
+}
+
+.next {
+    right: 0;
+}
+
+.price_box {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    float: right;
+    padding: 15px;
+    width: 20%;
+    height: 30%;
+    background-color: #fff;
+}
+
+.images {
+    display: flex;
+    justify-content: space-between;
+}
+
+.add_to_cart_btn {
+    font-weight: bold;
+    color: #fff;
+    background-color: rgba(0, 91, 255, 1);
+    border-radius: 10px;
+    border: none;
+    width: 120px;
+    height: 50px;
+}
+
+
+.add_to_cart_btn:hover {
+    background-color: rgba(0, 91, 255, 0.8);
+}
+
+
+.comment {
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+}
+
+.user-info img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.rating {
+    color: orange; /* Цвет звёзд (можно использовать иконки звёзд) */
+}
+
+.content {
+    font-weight: normal; /* Курсив для текста отзыва */
+}
+
+.date {
+    font-weight: normal;
+}
+
+.add_comment_btn {
+    font-weight: bold;
+    color: #fff;
+    background-color: rgba(0, 91, 255, 1);
+    border-radius: 10px;
+    border: none;
+    width: auto;
+    height: 50px;
+    padding: 15px;
+    margin-bottom: 20px;
+}
+
+
+.add_comment_btn:hover {
+    background-color: rgba(0, 91, 255, 0.8);
+}
+
+.comment_box {
+    background-color: #ccc;
+    border-radius: 10px;
+    padding: 50px;
+    margin-bottom: 15px;
+}

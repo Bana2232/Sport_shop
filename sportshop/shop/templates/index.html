@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Главная{% endblock %}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static 'css/index_style.css' %}">
+{% endblock %}
+
+{% block content %}
+<div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <img src="..." class="d-block w-100" alt="...">
+        </div>
+        <div class="carousel-item">
+            <img src="..." class="d-block w-100" alt="...">
+        </div>
+        <div class="carousel-item">
+            <img src="..." class="d-block w-100" alt="...">
+        </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying"
+            data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying"
+            data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
+</div>
+
+<div class="items-list">
+    <h1>Наши товары</h1>
+
+    <div class="cards">
+        {% for item in items %}
+        <div class="card">
+
+            <div class="images">
+                <div class="slider">
+                    <a href="{% url 'shop:item_detail' item.id %}">
+                        <div class="slides">
+                            {% for photo in item.images.all %}
+                            <div class="slide" style='background-image: url({{ photo.image.url }});'></div>
+                            {% endfor %}
+                        </div>
+                    </a>
+                    <button class="prev" onclick="changeSlide(-1, {{ item.id }} - 1)">&#10094;</button>
+                    <button class="next" onclick="changeSlide(1, {{ item.id }} - 1)">&#10095;</button>
+                </div>
+            </div>
+
+            <div class="card-body">
+                <a class="card-title" href="{% url 'shop:item_detail' item.id %}">{{ item.title }}</a>
+                <p class="card-price">{{ item.price }} ₽</p>
+                <a href="{% url 'shop:cart_add' item.id %}" class="btn btn-primary">В корзину</a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    {% include "pagination.html" with page=pages %}
+
+    <script src="{% static 'js/script1.js' %}"></script>
+    {% endblock %}
+</div>

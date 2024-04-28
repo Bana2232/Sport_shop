@@ -1,0 +1,6 @@
+<h2>Добавить новый отзыв</h2>
+<form method="post">
+    {{ form.as_p }}
+    {% csrf_token %}
+    <p><input type="submit" value="Добавить отзыв"></p>
+</form>

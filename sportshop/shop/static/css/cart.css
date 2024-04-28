@@ -1,0 +1,57 @@
+.product-card {
+    display: flex;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    overflow: hidden;
+    max-width: 300px; /* Максимальная ширина карточки */
+}
+
+.product-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px 0 0 8px;
+}
+
+.product-details {
+    padding: 16px;
+}
+
+.product-details h2 {
+    margin-top: 0;
+}
+
+.product-price {
+    margin-bottom: 12px;
+}
+
+.discount-price {
+    font-weight: bold;
+    font-size: 1.2em;
+    color: #006400; /* Зеленый цвет для цены со скидкой */
+}
+
+.original-price {
+    text-decoration: line-through;
+    color: #999; /* Серый цвет для оригинальной цены */
+}
+
+.product-actions button {
+    background-color: #f8f8f8;
+    border: none;
+    padding: 8px;
+    margin-right: 6px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1.2em;
+}
+
+.buy-button {
+    background-color: #ff4500; /* Оранжевый цвет для кнопки "Купить" */
+    color: #fff;
+}
+
+.wishlist-button,
+.cart-button {
+    font-size: 1.5em;
+    line-height: 1;
+}

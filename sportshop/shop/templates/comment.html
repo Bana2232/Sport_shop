@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %}Добавить отзыв{% endblock %}
+
+{% block content %}
+<div class="container" style="margin: 20px">
+    <h2 style="border-bottom: 1px solid #ccc; margin-bottom: 20px;">
+        Добавить новый отзыв</h2>
+
+    <form method="post">
+        {{ form.as_p }}
+        {% csrf_token %}
+        <p><input type="submit" value="Добавить отзыв"></p>
+    </form>
+
+</div>
+{% endblock %}
