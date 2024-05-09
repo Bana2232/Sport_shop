@@ -26,7 +26,7 @@
 
 <h1 style="margin-left: 1%;">Наши товары</h1>
 
-<div class="cont" style="display: flex; margin-left: 1%; justify-content: space-between;">
+<div class="cont" style="display: flex; margin-left: 1%;">
     <div class="bd-example m-0 border-0">
         <div class="list-group" style="width: 270px;">
             {% for category in categories %}
@@ -34,7 +34,12 @@
                 {{ category.category }}
             </a>
             {% endfor %}
+            <a href="{% url 'shop:index' %}">
+                <input type="button" class="btn btn-primary" style="width: 100%;
+                height: 40px; margin-top: 4%" value="Показать всё">
+            </a>
         </div>
+
     </div>
 
     <div class="items-list">
