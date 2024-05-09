@@ -9,6 +9,9 @@ class Category(models.Model):
 
     category = models.CharField(max_length=50, verbose_name="Категория")
 
+    def __str__(self):
+        return self.category
+
 
 class Item(models.Model):
     class Meta:

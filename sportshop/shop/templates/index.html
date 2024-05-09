@@ -24,38 +24,52 @@
     </div>
 </div>
 
-<div class="items-list">
-    <h1>Наши товары</h1>
+<h1 style="margin-left: 1%;">Наши товары</h1>
 
-    <div class="cards">
-        {% for item in items %}
-        <div class="card">
-
-            <div class="images">
-                <div class="slider">
-                    <a href="{% url 'shop:item_detail' item.id %}">
-                        <div class="slides">
-                            {% for photo in item.images.all %}
-                            <div class="slide" style='background-image: url({{ photo.image.url }});'></div>
-                            {% endfor %}
-                        </div>
-                    </a>
-                    <button class="prev" onclick="changeSlide(-1, {{ item.id }} - 1)">&#10094;</button>
-                    <button class="next" onclick="changeSlide(1, {{ item.id }} - 1)">&#10095;</button>
-                </div>
-            </div>
-
-            <div class="card-body">
-                <a class="card-title" href="{% url 'shop:item_detail' item.id %}">{{ item.title }}</a>
-                <p class="card-price">{{ item.price }} ₽</p>
-                <a href="{% url 'shop:cart_add' item.id %}" class="btn btn-primary">В корзину</a>
-            </div>
+<div class="cont" style="display: flex; margin-left: 1%; justify-content: space-between;">
+    <div class="bd-example m-0 border-0">
+        <div class="list-group" style="width: 270px;">
+            {% for category in categories %}
+            <a href="{% url 'shop:index' %}?filt={{ category.id }}" class="list-group-item list-group-item-action">
+                {{ category.category }}
+            </a>
+            {% endfor %}
         </div>
-        {% endfor %}
     </div>
 
-    {% include "pagination.html" with page=pages %}
+    <div class="items-list">
+        <div class="cards">
+            {% for item in items %}
+            <div class="card">
 
-    <script src="{% static 'js/script1.js' %}"></script>
-    {% endblock %}
+                <div class="images">
+                    <div class="slider">
+                        <a href="{% url 'shop:item_detail' item.id %}">
+                            <div class="slides">
+                                {% for photo in item.images.all %}
+                                <div class="slide" style='background-image: url({{ photo.image.url }});'></div>
+                                {% endfor %}
+                            </div>
+                        </a>
+                        <button class="prev" onclick="changeSlide(-1, {{ item.id }} - 1)">&#10094;</button>
+                        <button class="next" onclick="changeSlide(1, {{ item.id }} - 1)">&#10095;</button>
+                    </div>
+                </div>
+
+                <div class="card-body">
+                    <a class="card-title" href="{% url 'shop:item_detail' item.id %}">{{ item.title }}</a>
+                    <p class="card-price">{{ item.price }} ₽</p>
+                    <a href="{% url 'shop:cart_add' item.id %}" class="btn btn-primary">В корзину</a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        {% include "pagination.html" with page=pages %}
+
+    </div>
+
 </div>
+
+<script src="{% static 'js/script1.js' %}"></script>
+{% endblock %}

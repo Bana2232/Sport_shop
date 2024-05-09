@@ -18,7 +18,6 @@
 .cards {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
 }
 
 .images {
@@ -78,11 +77,6 @@ button {
     right: 0;
 }
 
-.images {
-    display: flex;
-    justify-content: space-between;
-}
-
 #carouselExampleSlidesOnly {
     width: 95%;
     border-radius: 15px;
@@ -98,5 +92,5 @@ button {
 .carousel-item img {
     width: 100%;
     height: 100%;
-    object-fit: contain; /* Сохраняет пропорции и вписывает изображение */
+    object-fit: contain;
 }

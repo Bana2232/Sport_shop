@@ -6,7 +6,7 @@ from .models import *
 class ItemAdmin(admin.ModelAdmin):
     list_display = ["title", "description", "price", "rating"]
     search_fields = ["title", "description"]
-    list_filter = ["added"]
+    list_filter = ["added", "category"]
     date_hierarchy = "added"
     ordering = ["added"]
 
