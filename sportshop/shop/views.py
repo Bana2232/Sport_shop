@@ -40,15 +40,34 @@ def about(request):
 
 
 def item_page(request, item_id):
+    item = get_object_or_404(Item, id=item_id)
+    comments = item.comments.all()
+
+    paginator = Paginator(comments, 4)
+    page_number = request.GET.get("page", 1)
+
     try:
-        item = get_object_or_404(Item, id=item_id)
+        comments = paginator.page(page_number)
 
-        return render(request, "item.html",
-                      {"item": item, "images": item.images.all(),
-                       "comments": item.comments.all()})
+    except EmptyPage:
+        comments = paginator.page(1)
 
-    except Http404:
-        return render(request, "Страница не существует")
+    except PageNotAnInteger:
+        comments = paginator.page(1)
+
+    sum_rating = 0
+    length = 0
+
+    for comment in comments:
+        length += 1
+        sum_rating += comment.rate
+
+    average = round(sum_rating / length, 2) if length != 0 else 0
+
+    return render(request, "item.html",
+                  {"item": item, "images": item.images.all(),
+                   "comments": comments, "paginator": paginator,
+                   "average": average})
 
 
 def item_comment(request, item_id):

@@ -1,10 +1,11 @@
 {% extends "base.html" %}
 
 {% load static %}
+{% load custom_filters %}
 
 {% block title %}{{ item.title }}{% endblock %}
 {% block styles %}
-<link rel="stylesheet" href='{% static "css/q.css" %}'>
+<link rel="stylesheet" href='{% static "css/q2.css" %}'>
 {% endblock %}
 
 {% block content %}
@@ -14,7 +15,7 @@
     </div>
 
     <div class="info">
-        <a href="#">Рейтинг: {{ item.rating }}</a>
+        <a href="#">Рейтинг: {{ average }}</a>
         <a href="#">{{ comments|length }}
             {% if comments|length == 1 %}
             отзыв
@@ -36,10 +37,6 @@
             <button class="next" onclick="changeSlide(1)">&#10095;</button>
         </div>
 
-        <div>
-            1
-        </div>
-
         <div class="price_box">
             <h2>{{ item.price }} ₽</h2>
             <a href="{% url 'shop:cart_add' item.id %}"><input class="add_to_cart_btn" value="В корзину" type="button"></a>
@@ -49,32 +46,33 @@
 
     <div class="about_item">
         <h2 style="margin-top: 3%; border-bottom: 1px solid #ccc; margin-bottom: 2%;">О товаре</h2>
-        <h5 style="font-weight: normal; font-size: 16px; margin-top: -1%;">{{ item.description | linebreaks }}</h5>
+        <h5 style="font-weight: normal; font-size: 20px; margin-top: -1%;">{{ item.description | linebreaks }}</h5>
     </div>
 
     <h2 style="margin-top: 3%; border-bottom: 1px solid #ccc; padding-bottom: 1%;">Отзывы о товаре</h2>
     <a href="{% url 'shop:add_comment' item.id %}"><input class="add_comment_btn" value="Написать отзыв"
                                                           type="button"></a>
 
+    {% if comments|length == 0 %}
+    <h3 align="center" style="color: #ddd">Отзывов нет</h3>
+    {% else %}
     {% for comment in comments %}
     <div class="comment_box">
+
         <div class="user-info">
-            <img src="avatar.jpg" alt="User Avatar">
-            <p>{{ comment.name }}</p>
+            <h3>{{ comment.name }}</h3>
         </div>
         <div class="review-info">
-            <p class="date">{{ comment.created }}</p>
+            {{ comment.created }}
             <div class="rating">
-                <span class="star">⭐</span>
-                <span class="star">⭐</span>
-                <span class="star">⭐</span>
-                <span class="star">⭐</span>
-                <span class="star">⭐</span>
+                <span class="star">{{ "⭐"|multiply_string:comment.rate  }}</span>
             </div>
-            <p class="content">{{ comment.body }}</p>
+            <p style="font-size: 18px; margin-top: 5px;">{{ comment.body }}</p>
         </div>
     </div>
     {% endfor %}
+    {% include "pagination.html" with page=pages items=comments %}
+    {% endif %}
 </div>
 
 <script src="{% static 'js/script.js' %}"></script>
