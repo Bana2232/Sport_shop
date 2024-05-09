@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Item, Comment, Cart, Images
+from .models import *
 
 
 @admin.register(Item)
@@ -30,3 +30,17 @@ class CommentAdmin(admin.ModelAdmin):
 @admin.register(Images)
 class ImagesAdmin(admin.ModelAdmin):
     ...
+
+
+@admin.register(Category)
+class CommentAdmin(admin.ModelAdmin):
+    list_display = ["id", "category"]
+    search_fields = ["id", "category"]
+    ordering = ["id"]
+
+
+@admin.register(CarouselItems)
+class CommentAdmin(admin.ModelAdmin):
+    list_display = ["id", "title", "description", "image"]
+    search_fields = ["id", "title", "description"]
+    ordering = ["id"]

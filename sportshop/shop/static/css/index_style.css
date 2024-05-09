@@ -82,3 +82,21 @@ button {
     display: flex;
     justify-content: space-between;
 }
+
+#carouselExampleSlidesOnly {
+    width: 95%;
+    border-radius: 15px;
+    height: 500px;
+    margin: auto;
+    margin-top: 10px;
+    overflow: hidden;
+    position: relative;
+}
+.carousel-inner {
+    height: 100%;
+}
+.carousel-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* Сохраняет пропорции и вписывает изображение */
+}

@@ -2,12 +2,13 @@ from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.http import Http404
 from django.shortcuts import render, get_object_or_404, redirect
 
-from .models import Item, Cart
+from .models import Item, Cart, CarouselItems
 from .forms import CommentForm
 
 
 def index_page(request):
     items_list = Item.objects.all()
+    slides = CarouselItems.objects.all()
 
     paginator = Paginator(items_list, 6)
     page_number = request.GET.get("page", 1)
@@ -22,7 +23,8 @@ def index_page(request):
         items = paginator.page(1)
 
     return render(request, "index.html",
-                  {"items": items, "paginator": paginator})
+                  {"items": items, "paginator": paginator,
+                   "slides": slides})
 
 
 def about(request):
